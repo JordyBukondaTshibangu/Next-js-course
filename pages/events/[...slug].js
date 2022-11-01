@@ -1,6 +1,9 @@
 import { useRouter } from "next/router";
 import { getFilteredEvents } from "../../dummy-data";
 import EventList from "../../components/events/event-list";
+import { Fragment } from "react";
+import Button from "../../components/ui/button";
+import ErrorAlert from "../../components/error-alert";
 
 const DiversPage = () => {
   const router = useRouter();
@@ -25,11 +28,21 @@ const DiversPage = () => {
   }
   const events = getFilteredEvents({ year: theYear, month: theMonth });
   if (!events || events.length === 0) {
-    return <p className="center">No Events found...</p>;
+    return (
+      <div className="center">
+        <ErrorAlert>No Events found ...</ErrorAlert>
+        <Button className="center" link="/events">
+          Show All Events
+        </Button>
+      </div>
+    );
   }
-
-  console.log(events);
-  return <EventList events={events} />;
+  return (
+    <div className="center">
+      <EventList events={events} />
+      <Button link="/events">Show All Events</Button>
+    </div>
+  );
 };
 
 export default DiversPage;
