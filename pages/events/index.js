@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
 import EventList from "../../components/events/event-list";
@@ -13,6 +14,13 @@ const EventPage = (props) => {
   };
   return (
     <Fragment>
+      <Head>
+        <title>All the Events</title>
+        <meta
+          name="All the events"
+          content="Find the best events in your city"
+        />
+      </Head>
       <EventSearch onSearch={findEventHandler} />
       <EventList events={events} />
     </Fragment>
